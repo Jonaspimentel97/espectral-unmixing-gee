@@ -28,10 +28,6 @@ st.write(auth_status)
 # Configuração do Streamlit
 st.title('Mistura Espectral')
 
-# Inicializar o Earth Engine
-ee.Authenticate()
-ee.Initialize(project='gee1-444402')
-
 # Carregar a geometria do Pantanal
 pantanal = ee.FeatureCollection("users/jonaspimentel97/pantanal")
 
