@@ -122,43 +122,14 @@ Map.centerObject(pantanal, 7)
 
 # Adicionar as camadas de endmembers (resultados da mistura)
 
-Map.addLayer(water, {}, 'water', False)
-Map.addLayer(bare, {}, 'bare', False)
-Map.addLayer(vegetation, {}, 'veg', False)
-Map.addLayer(unmixed.select('bare'), {'min': 0, 'max': 1, 'palette': ['white', 'brown']}, 'Solo (Bare)', False)
-Map.addLayer(unmixed.select('vegetation'), {'min': 0, 'max': 1, 'palette': ['white', 'green']}, 'Vegetação (Veg)', False)
-Map.addLayer(unmixed.select('water'), {'min': 0, 'max': 1, 'palette': ['white', 'blue']}, 'Água (Water)', False)
 Map.addLayer(unmixed, {}, 'Unmix Result')
-# Adicionar os índices NDWI e MNDWI ao mapa
-Map.addLayer(ndwi, {'min': 0, 'max': 1, 'palette': ['white', 'blue']}, 'NDWI')
-Map.addLayer(mndwi, {'min': 0, 'max': 1, 'palette': ['white', 'blue']}, 'MNDWI')
+
 # adiconar indice de mistura 
 
 Map.addLayer(normalized_difference,{'min': 0, 'max': 1, 'palette': ['white', 'red']}, 'Mixing Index')
-
-
-# Adicionar o mosaico da imagem combinada com cores reais (RGB)
-Map.addLayer(
-    combined_img, 
-    {'bands': ['B4', 'B3', 'B2'], 'min': 0.0,'max': 0.4, 'gamma':1.4}, 
-    'Imagem Real (RGB)', False
-)
 
 # Exibir o mapa no Streamlit
 st.write("### Mapa Interativo")
 Map.to_streamlit(height=600)
 
-#teste
-
-
-# Calcular a variação entre as frações (quanto mais baixa a diferença, maior a mistura)
-fraction_difference = (
-    unmixed.select('water')
-    .subtract(unmixed.select('vegetation')).abs()
-    .add(unmixed.select('water').subtract(unmixed.select('bare')).abs())
-    .add(unmixed.select('vegetation').subtract(unmixed.select('bare')).abs())
-)
-
-# Normalizar a variação (opcional para facilitar a visualização)
-normalized_difference = fraction_difference.divide(3)
 
