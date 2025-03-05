@@ -89,20 +89,6 @@ endmembers = ee.List([bareMean, vegMean, waterMean])
 # Aplicar a técnica de mistura espectral (unmix)
 unmixed = combined_img.unmix(endmembers, sumToOne=True, nonNegative=True).rename(['bare', 'vegetation', 'water'])
 
-# Selecionar as bandas de acordo com as bandas disponíveis
-# NDWI: (B3 - B5) / (B3 + B5)
-ndwi = combined_img.normalizedDifference(['B3', 'B5']).rename('NDWI')
-
-# MNDWI: (B3 - B6) / (B3 + B6)
-mndwi = combined_img.normalizedDifference(['B3', 'B6']).rename('MNDWI')
-
-
-# Selecionar as bandas de acordo com as bandas disponíveis
-# NDWI: (B3 - B5) / (B3 + B5)
-ndwi = combined_img.normalizedDifference(['B3', 'B5']).rename('NDWI')
-
-# MNDWI: (B3 - B6) / (B3 + B6)
-mndwi = combined_img.normalizedDifference(['B3', 'B6']).rename('MNDWI')
 
 # Calcular a variação entre as frações (quanto mais baixa a diferença, maior a mistura)
 fraction_difference = (
