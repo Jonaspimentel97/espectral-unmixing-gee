@@ -1,6 +1,8 @@
 import ee
 import geemap.foliumap as geemap
 import streamlit as st
+from google.oauth2 import service_account
+from ee import oauth
 
 # Função para autenticar no Google Earth Engine
 def get_auth():
