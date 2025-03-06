@@ -25,6 +25,10 @@ def get_auth():
 auth_status = get_auth()
 st.write(auth_status)
 
+# Inicializar o Earth Engine
+ee.Authenticate()
+ee.Initialize(project='gee1-444402')
+
 # Configuração do Streamlit
 st.title('Mistura Espectral')
 
