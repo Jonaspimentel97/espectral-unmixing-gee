@@ -33,7 +33,11 @@ ee.Initialize(project='gee1-444402')
 st.title('Mistura Espectral')
 
 # Carregar a geometria do Pantanal
-pantanal = ee.FeatureCollection("users/jonaspimentel97/pantanal")
+pantanal = ee.Geometry.Polygon([
+    [[-43.003569900550836, -22.631163343162356],
+     [-43.003569900550836, -22.71289591702512],
+     [-42.814055740394586, -22.71289591702512],
+     [-42.814055740394586, -22.631163343162356]]
 
 # Definir as regiões para solo, vegetação e água (substitua pelos seus próprios assets ou coleções)
 bare = ee.FeatureCollection('users/jonaspimentel97/bare')
