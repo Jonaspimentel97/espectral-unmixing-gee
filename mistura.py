@@ -15,7 +15,7 @@ def get_auth():
         
         # Inicializa o Google Earth Engine com as credenciais
         ee.Initialize(credentials)
-        return "Autenticação bem-sucedida!"
+        return " "
     except Exception as e:
         st.error(f"Erro ao autenticar: {e}")
         return None
