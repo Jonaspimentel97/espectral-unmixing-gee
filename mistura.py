@@ -172,7 +172,7 @@ with st.sidebar:
     )
 
     # Exibir imagem da comparação entre NDWI e MNDWI
-    st.image(https://github.com/Jonaspimentel97/espectral-unmixing-gee/blob/main/1.png?raw=true, caption="NDWI e MNDWI do Pantanal", use_container_width=True)
+    st.image("https://github.com/Jonaspimentel97/espectral-unmixing-gee/blob/main/1.png?raw=true", caption="NDWI e MNDWI do Pantanal", use_container_width=True)
 
     # Separador visual
     st.divider()
@@ -207,6 +207,6 @@ with st.sidebar:
     )
 
     # Exibir imagens adicionais
-    st.image(https://github.com/Jonaspimentel97/espectral-unmixing-gee/blob/main/2.png?raw=true, caption="Percentual de Cada Componente com Base no Modelo de Fração.", use_container_width=True)
-    st.image(https://github.com/Jonaspimentel97/espectral-unmixing-gee/blob/main/3.png?raw=true, caption="Comparação entre MNDWI (A), NDWI (B) e Imagem de Frações (C)", use_container_width=True)
+    st.image("https://github.com/Jonaspimentel97/espectral-unmixing-gee/blob/main/2.png?raw=true", caption="Percentual de Cada Componente com Base no Modelo de Fração.", use_container_width=True)
+    st.image("https://github.com/Jonaspimentel97/espectral-unmixing-gee/blob/main/3.png?raw=true", caption="Comparação entre MNDWI (A), NDWI (B) e Imagem de Frações (C)", use_container_width=True)
 
