@@ -86,22 +86,132 @@ Map = geemap.Map()
 Map.centerObject(pantanal, 7)
 
 # Adicionar camadas ao mapa
-Map.addLayer(water, {}, 'Water', False)
-Map.addLayer(bare, {}, 'Bare', False)
-Map.addLayer(vegetation, {}, 'Vegetation', False)
-Map.addLayer(unmixed.select('bare'), {'min': 0, 'max': 1, 'palette': ['white', 'brown']}, 'Bare Soil', False)
-Map.addLayer(unmixed.select('vegetation'), {'min': 0, 'max': 1, 'palette': ['white', 'green']}, 'Vegetation', False)
-Map.addLayer(unmixed.select('water'), {'min': 0, 'max': 1, 'palette': ['white', 'blue']}, 'Water', False)
-Map.addLayer(unmixed, {}, 'Unmix Result')
+
+Map.addLayer(unmixed, {}, 'Modelo Linear de Mistura Espectral')
 Map.addLayer(ndwi, {'min': 0, 'max': 1, 'palette': ['white', 'blue']}, 'NDWI')
 Map.addLayer(mndwi, {'min': 0, 'max': 1, 'palette': ['white', 'blue']}, 'MNDWI')
-Map.addLayer(normalized_difference, {'min': 0, 'max': 1, 'palette': ['white', 'red']}, 'Mixing Index')
-Map.addLayer(
+#Map.addLayer(normalized_difference, {'min': 0, 'max': 1, 'palette': ['white', 'red']}, 'Mixing Index')
+#Map.addLayer(
     combined_img, 
     {'bands': ['B4', 'B3', 'B2'], 'min': 0.0, 'max': 0.4, 'gamma': 1.4}, 
-    'RGB Image', False
+    'Mosaico RGB', 
 )
+# Criar uma sidebar para o título e contextualização
+with st.sidebar:
+    # Título estilizado na barra lateral
+    st.markdown(
+        """
+        <div style="
+            text-align: center; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 15px; 
+            font-weight: bold; 
+            color: white; 
+            background: linear-gradient(to right, #4CAF50, #2E8B57); 
+            padding: 10px; 
+            border-radius: 8px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);">
+            USO DA MISTURA ESPECTRAL COMO FORMA DE AVALIAÇÃO DOS ÍNDICES NDWI E MNDWI PARA O PANTANAL BRASILEIRO
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
-# Exibir o mapa no Streamlit
-st.write("### Mapa Interativo")
-Map.to_streamlit(height=600)
+    # Contextualização
+    st.markdown(
+        """
+        ## 🌎 Contextualização
+
+        - **📡 Satélite:** Landsat 8 (Surface Reflectance)  m e
+        - **📅 Período:** Úmido de 2020 
+
+        ### 📊 Índices Espectrais
+        - **NDWI:** Destaca corpos d'água abertos  
+          - 🧮 Fórmula: *(NIR - SWIR) / (NIR + SWIR)*  
+        - **MNDWI:** Melhora a identificação de corpos d'água  
+          - 🧮 Fórmula: *(GREEN - SWIR) / (GREEN + SWIR)*  
+
+        ### 🔎 Processamento no Google Earth Engine (GEE)
+        - **15 cenas do Pantanal** (Bandas: 2, 3, 4, 5, 6 e 7)  
+        - **Função:** `reduceRegion`  
+
+        ### 🔬 Modelo de Mistura Espectral (MLME)
+        - **Função:** `unmix`  
+        - **Baseado em endmembers (assinaturas puras):**  
+          - 🌱 Vegetação  
+          - 🏜 Solo  
+          - 💧 Água  
+
+        """
+    )
+
+# Exibir o mapa ao lado direito
+Map.to_streamlit(height=1000)
+
+# Sidebar para contextualização e imagens 📊
+with st.sidebar:
+    # Título estilizado
+    st.markdown(
+        """
+        <div style="
+            text-align: center; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 18px; 
+            font-weight: bold; 
+            color: white; 
+            background: linear-gradient(to right, #1E90FF, #4682B4); 
+            padding: 8px; 
+            border-radius: 6px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);">
+            🛰️ Comparação NDWI x MNDWI
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Contextualização 📊
+    st.markdown(
+        """
+        - **Áreas analisadas**: MNDWI detectou mais água que o NDWI.    
+        """
+    )
+
+    # Exibir imagem da comparação entre NDWI e MNDWI
+    st.image(r"D:\mistrua\1.png", caption="NDWI e MNDWI do Pantanal", use_container_width=True)
+
+    # Separador visual
+    st.divider()
+
+    # Título da próxima seção
+    st.markdown(
+        """
+        <div style="
+            text-align: center; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 18px; 
+            font-weight: bold; 
+            color: white; 
+            background: linear-gradient(to right, #1E90FF, #4682B4); 
+            padding: 8px; 
+            border-radius: 6px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);">
+            🌊 Eficiência do MNDWI
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Explicação sobre o MNDWI
+    st.markdown(
+        """
+        ### **🔬 Análise de Mistura Espectral**
+        - Corpos d’água com até **35% de vegetação** → Melhor detectados pelo **MNDWI**.  
+        - **Limiar de 75%** foi definido para classificar corpos d’água.  
+        - **MNDWI se destaca** na identificação de água em regiões com alta mistura espectral.  
+        """
+    )
+
+    # Exibir imagens adicionais
+    st.image(r"D:\mistrua\2.png", caption="Percentual de Cada Componente com Base no Modelo de Fração.", use_container_width=True)
+    st.image(r"D:\mistrua\3.png", caption="Comparação entre MNDWI (A), NDWI (B) e Imagem de Frações (C)", use_container_width=True)
+
