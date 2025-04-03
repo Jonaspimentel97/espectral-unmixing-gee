@@ -24,8 +24,6 @@ def get_auth():
 auth_status = get_auth()
 st.write(auth_status)
 
-# Configuração do Streamlit
-st.title('Mistura Espectral')
 
 # Carregar a geometria do Pantanal
 pantanal = ee.FeatureCollection("users/jonaspimentel97/pantanal")
