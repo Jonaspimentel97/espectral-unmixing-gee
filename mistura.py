@@ -91,11 +91,6 @@ Map.addLayer(unmixed, {}, 'Modelo Linear de Mistura Espectral')
 Map.addLayer(ndwi, {'min': 0, 'max': 1, 'palette': ['white', 'blue']}, 'NDWI')
 Map.addLayer(mndwi, {'min': 0, 'max': 1, 'palette': ['white', 'blue']}, 'MNDWI')
 #Map.addLayer(normalized_difference, {'min': 0, 'max': 1, 'palette': ['white', 'red']}, 'Mixing Index')
-Map.addLayer(
-    combined_img, 
-    {'bands': ['B4', 'B3', 'B2'], 'min': 0.0, 'max': 0.4, 'gamma': 1.4}, 
-    'Mosaico RGB', 
-)
 # Criar uma sidebar para o título e contextualização
 with st.sidebar:
     # Título estilizado na barra lateral
@@ -177,7 +172,7 @@ with st.sidebar:
     )
 
     # Exibir imagem da comparação entre NDWI e MNDWI
-    st.image(r"D:\mistrua\1.png", caption="NDWI e MNDWI do Pantanal", use_container_width=True)
+    st.image(https://github.com/Jonaspimentel97/espectral-unmixing-gee/blob/main/1.png?raw=true, caption="NDWI e MNDWI do Pantanal", use_container_width=True)
 
     # Separador visual
     st.divider()
