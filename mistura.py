@@ -29,9 +29,9 @@ st.write(auth_status)
 pantanal = ee.FeatureCollection("users/jonaspimentel97/pantanal")
 
 # Definir as regiões para solo, vegetação e água
-bare = ee.FeatureCollection('users/jonaspimentel97/bare')
-vegetation = ee.FeatureCollection('users/jonaspimentel97/vegetation')
-water = ee.FeatureCollection('users/jonaspimentel97/water')
+bare = ee.FeatureCollection('users/jonaspimentel97/bare1')
+vegetation = ee.FeatureCollection('users/jonaspimentel97/vegetation1')
+water = ee.FeatureCollection('users/jonaspimentel97/water1')
 
 # Carregar as imagens Landsat
 image_ids = [
