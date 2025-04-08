@@ -232,7 +232,7 @@ with st.sidebar:
 
     st.markdown("Clique no botão abaixo para acessar o script diretamente no GEE:")
 
-    gee_url = "https://code.earthengine.google.com/e9943c519a8cc7eb34c3179a07698191"  # ← substitua pelo link do seu script
+    gee_url = "https://code.earthengine.google.com/e9943c519a8cc7eb34c3179a07698191" 
 
     st.markdown(f"""
     <a href="{gee_url}" target="_blank">
