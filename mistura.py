@@ -207,4 +207,49 @@ with st.sidebar:
     # Exibir imagens adicionais
     st.image("https://github.com/Jonaspimentel97/espectral-unmixing-gee/blob/main/2.png?raw=true", caption="Percentual de Cada Componente com Base no Modelo de Fração.", use_container_width=True)
     st.image("https://github.com/Jonaspimentel97/espectral-unmixing-gee/blob/main/3.png?raw=true", caption="Comparação entre MNDWI (A), NDWI (B) e Imagem de Frações (C)", use_container_width=True)
+    # Separador visual
+    st.divider()
 
+    # Título da próxima seção
+    st.markdown(
+        """
+        <div style="
+            text-align: center; 
+            font-family: 'Arial', sans-serif; 
+            font-size: 18px; 
+            font-weight: bold; 
+            color: white; 
+            background: Green; 
+            padding: 8px; 
+            border-radius: 6px;
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.2);">
+            📜 Código Google Earth Engine 
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown("Clique no botão abaixo para acessar o script diretamente no GEE:")
+
+    gee_url = "https://code.earthengine.google.com/6ecf52a4d7f9c8c9d8cfe3aabcdb6ee1"  # ← substitua pelo link do seu script
+
+    st.markdown(f"""
+    <a href="{gee_url}" target="_blank">
+        <button style="
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            border-radius: 6px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+        ">
+            🌍 Abrir no Earth Engine
+        </button>
+    </a>
+    """, unsafe_allow_html=True)
